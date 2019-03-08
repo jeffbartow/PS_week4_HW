@@ -10,8 +10,8 @@ var season_type = 'regular';
 var url = "https://api.collegefootballdata.com/rankings?"+"year="+season_year+"&week="+ncaafb_season_week+"&seasonType="+season_type;
 console.log(url);
 
-//save a refrence to the ordered list
-var rankings = document.querySelector('ol');
+//save a refrence to 1st item in ordered list
+var rankings = document.getElementById('team-1');
 var data;
 
 // fetch rankings data that we need
@@ -20,6 +20,9 @@ fetch(url)
     return jsonresponse.json();
 })
 .then(function (data) {
-    display.innerText = data.value;
+    console.log(JSON.stringify(data));
 })
 console.log(data);
+
+//replace the ordered list with json data
+rankings = JSON.parse('{ "poll":"AP Top 25", "rank":1}');
